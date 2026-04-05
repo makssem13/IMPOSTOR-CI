@@ -14,14 +14,16 @@ jobs:
           haxe-version: 4.2.5
       - name: install libs
         run: |
-          haxelib install lime
-          haxelib install openfl
-          haxelib install flixel
-          haxelib install flixel-tools
-          haxelib install flixel-addons
-          haxelib install flixel-ui
-          haxelib install hxcpp
-          haxelib install linc_luajit
+          haxelib install lime --quiet
+          haxelib install openfl --quiet
+          haxelib install flixel --quiet
+          haxelib install flixel-tools --quiet
+          haxelib install flixel-ui --quiet
+          haxelib install flixel-addons --quiet
+          haxelib install flixel-ui --quiet
+          haxelib install hxcpp --quiet
+          haxelib install linc_luajit --quiet
+          haxelib install discord_rpc --quiet
       - name: build
         run: haxelib run lime build windows
       - name: upload
