@@ -1,0 +1,30 @@
+name: modbld
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: install haxe
+        uses: HaxeFoundation/setup-haxe@v2.0.3
+        with:
+          haxe-version: 4.2.5
+      - name: install libs
+        run: |
+          haxelib install lime
+          haxelib install openfl
+          haxelib install flixel
+          haxelib install flixel-tools
+          haxelib install flixel-addons
+          haxelib install flixel-ui
+          haxelib install hxcpp
+      - name: build
+        run: haxelib run lime build windows
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: fnf-build
+          path: export/release/windows/bin
