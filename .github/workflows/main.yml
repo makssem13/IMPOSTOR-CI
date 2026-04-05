@@ -20,10 +20,10 @@ jobs:
           haxelib install flixel-tools --quiet
           haxelib install flixel-ui --quiet
           haxelib install flixel-addons --quiet
-          haxelib install flixel-ui --quiet
           haxelib install hxcpp --quiet
           haxelib install linc_luajit --quiet
           haxelib install discord_rpc --quiet
+          haxelib install hscript --quiet
       - name: build
         run: haxelib run lime build windows
       - name: upload
