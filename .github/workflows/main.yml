@@ -21,6 +21,7 @@ jobs:
           haxelib install flixel-addons
           haxelib install flixel-ui
           haxelib install hxcpp
+          haxelib install linc_luajit
       - name: build
         run: haxelib run lime build windows
       - name: upload
