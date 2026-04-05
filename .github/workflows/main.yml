@@ -24,7 +24,7 @@ jobs:
           haxelib install linc_luajit --quiet
           haxelib install discord_rpc --quiet
           haxelib install hscript --quiet
-          git clone https://github.com/discord/discord-rpc.git lib/discord-rpc
+          git clone https://github.com/discord/discord-rpc.git lib
       - name: build
         run: haxelib run lime build windows
       - name: upload
