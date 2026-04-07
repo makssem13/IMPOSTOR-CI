@@ -26,8 +26,10 @@ jobs:
           haxelib install hscript --quiet
       - name: fix discord_rpc native lib
         run: |
-          $discordRpcPath = haxelib path discord_rpc | Select-String "discord_rpc" | Select-Object -First 1
-          $libPath = Join-Path $discordRpcPath.ToString().Trim() "lib"
+          $base = "C:/hostedtoolcache/windows/haxe/4.2.5/x64/lib/discord_rpc"
+          $version = Get-ChildItem $base | Select-Object -First 1 -ExpandProperty Name
+          $libPath = "$base/$version/lib"
+          Write-Host "Cloning into: $libPath/discord-rpc"
           New-Item -ItemType Directory -Force -Path $libPath
           git clone https://github.com/discord/discord-rpc.git "$libPath/discord-rpc"
         shell: pwsh
