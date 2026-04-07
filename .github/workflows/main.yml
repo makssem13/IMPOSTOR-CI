@@ -24,7 +24,13 @@ jobs:
           haxelib install linc_luajit --quiet
           haxelib install discord_rpc --quiet
           haxelib install hscript --quiet
-          git clone https://github.com/discord/discord-rpc.git C:/hostedtoolcache/windows/haxe/4.2.5/x64/lib/discord_rpc/1.0.0/lib/discord-rpc
+      - name: fix discord_rpc native lib
+        run: |
+          $discordRpcPath = haxelib path discord_rpc | Select-String "discord_rpc" | Select-Object -First 1
+          $libPath = Join-Path $discordRpcPath.ToString().Trim() "lib"
+          New-Item -ItemType Directory -Force -Path $libPath
+          git clone https://github.com/discord/discord-rpc.git "$libPath/discord-rpc"
+        shell: pwsh
       - name: build
         run: haxelib run lime build windows
       - name: upload
