@@ -31,7 +31,7 @@ jobs:
           $libPath = "$base/$version/lib"
           Write-Host "Cloning into: $libPath/discord-rpc"
           New-Item -ItemType Directory -Force -Path $libPath
-          git clone https://github.com/discord/discord-rpc.git "$libPath/discord-rpc"
+          git clone --branch v3.4.0 https://github.com/discord/discord-rpc.git "$libPath/discord-rpc"
         shell: pwsh
       - name: build
         run: haxelib run lime build windows
